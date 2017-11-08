@@ -2,7 +2,6 @@ version: '2'
 services:
   volumerize:
     image: blacklabelops/volumerize
-    command: backup
     stdin_open: true
     volumes:
       - "${SOURCE_VOLUME}:/source:ro"
