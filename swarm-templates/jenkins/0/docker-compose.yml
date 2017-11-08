@@ -1,0 +1,25 @@
+version: '2'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    environment:
+      VIRTUAL_HOST=jenkins.swarm.flagbit.com
+      VIRTUAL_PORT=8080
+    stdin_open: true
+    network_mode: bridge
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - /run/metadata:/run/metadata
+      - /run/torcx:/run/torcx
+    user: root
+    tty: true
+    ports:
+      - 8080
+      - 50000
+    labels:
+      io.rancher.container.pull_image: always
+
+volumes:
+  jenkins-data:
