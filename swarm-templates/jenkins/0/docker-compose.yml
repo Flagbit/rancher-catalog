@@ -20,6 +20,7 @@ services:
       - 50000
     labels:
       io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label: master=true
 
 volumes:
   jenkins-data:
