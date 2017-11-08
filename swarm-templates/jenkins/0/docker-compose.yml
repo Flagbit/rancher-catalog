@@ -17,9 +17,7 @@ services:
     tty: true
     ports:
       - 8443
-    args:
-      - httpPort=1
-      - httpsPort=8443
+    command: --httpPort=1 --httpsPort=8443
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: master=true
