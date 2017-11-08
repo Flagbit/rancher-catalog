@@ -8,7 +8,7 @@ services:
     stdin_open: true
     network_mode: bridge
     volumes:
-      - jenkins-data:/var/jenkins_home
+      - jenkins_jenkins-data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
       - /run/metadata:/run/metadata
@@ -23,6 +23,6 @@ services:
       io.rancher.scheduler.affinity:host_label: master=true
 
 volumes:
-  jenkins-data:
+  jenkins_jenkins-data:
     external:
       name: "${volume}"
