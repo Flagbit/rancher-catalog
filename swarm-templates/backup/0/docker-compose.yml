@@ -5,7 +5,7 @@ services:
     command: backup
     stdin_open: true
     volumes:
-      - "${BACKUP_VOLUME}:/source:ro"
+      - "${SOURCE_VOLUME}:/source:ro"
       - backup_volume:/backup
     environment:
       - VOLUMERIZE_SOURCE=/source

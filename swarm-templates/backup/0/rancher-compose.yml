@@ -4,6 +4,10 @@ catalog:
   version: 1.0.0
   description: ""
   minimum_rancher_version: v1.0.0-rc2
+  questions:
+    - variable: SOURCE_VOLUME
+      label: Source volume
+      type: string
 services:
   volumerize:
     start_on_create: true
