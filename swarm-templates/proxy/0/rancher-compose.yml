@@ -1,5 +1,14 @@
 .catalog:
-  name: "Proxy"
+  name: "Host Proxy"
   version: 1.0.0
   description: ""
   minimum_rancher_version: v1.0.0-rc2
+
+version: '2'
+services:
+  nginx-proxy:
+    start_on_create: true
+  letsencrypt-nginx-proxy-companion:
+    scale: 1
+    start_on_create: true
+
