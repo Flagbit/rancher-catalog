@@ -5,9 +5,6 @@ catalog:
   description: ""
   minimum_rancher_version: v1.0.0-rc2
 services:
-  nginx-proxy:
-    start_on_create: true
-  letsencrypt-nginx-proxy-companion:
-    scale: 1
+  volumerize:
     start_on_create: true
 
