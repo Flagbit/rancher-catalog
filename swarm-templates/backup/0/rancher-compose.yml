@@ -8,6 +8,9 @@ catalog:
     - variable: SOURCE_VOLUME
       label: Source volume
       type: string
+    - variable: BACKUP_TARGET
+      label: Backup target
+      type: string
 services:
   volumerize:
     start_on_create: true
