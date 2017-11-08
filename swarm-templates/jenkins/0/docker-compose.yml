@@ -3,8 +3,8 @@ services:
   jenkins:
     image: jenkins/jenkins:lts
     environment:
-      VIRTUAL_HOST=jenkins.swarm.flagbit.com
-      VIRTUAL_PORT=8080
+      - VIRTUAL_HOST=jenkins.swarm.flagbit.com
+      - VIRTUAL_PORT=8080
     stdin_open: true
     network_mode: bridge
     volumes:
