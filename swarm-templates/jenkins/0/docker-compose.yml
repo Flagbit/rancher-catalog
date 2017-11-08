@@ -25,4 +25,4 @@ services:
 volumes:
   jenkins-data:
     external:
-      name: 'jenkins-data'
+      name: "${volume}"
