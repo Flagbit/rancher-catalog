@@ -11,6 +11,9 @@ catalog:
     - variable: BACKUP_TARGET
       label: Backup target
       type: string
+    - variable: PASSPHRASE
+      label: Encryption passphrase
+      type: string
 services:
   volumerize:
     start_on_create: true

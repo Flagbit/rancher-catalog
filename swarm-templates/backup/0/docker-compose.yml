@@ -8,7 +8,8 @@ services:
       - backup_volume:/backup
     environment:
       - VOLUMERIZE_SOURCE=/source
-      - VOLUMERIZE_TARGET=b2://f66a59032e90:001fc657c519c0fd2d806eb43319b86828dd5c1f74@jenkins/backup/
+      - VOLUMERIZE_TARGET=${BACKUP_TARGET}
+      - PASSPHRASE=${PASSPHRASE}
     tty: true
     labels:
       io.rancher.container.pull_image: always
