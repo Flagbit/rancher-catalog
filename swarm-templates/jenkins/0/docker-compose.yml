@@ -4,7 +4,7 @@ services:
     image: jenkins/jenkins:lts
     environment:
       - VIRTUAL_HOST=jenkins.host1.swarm.flagbit.com
-      - VIRTUAL_PORT=8080
+      - VIRTUAL_PORT=8443
     stdin_open: true
     network_mode: bridge
     volumes:
@@ -16,8 +16,10 @@ services:
     user: root
     tty: true
     ports:
-      - 8080
-      - 50000
+      - 8443
+    args:
+      - httpPort=1
+      - httpsPort=8443
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: master=true
