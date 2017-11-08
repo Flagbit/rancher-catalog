@@ -1,0 +1,14 @@
+version: '2'
+catalog:
+  name: "Registry"
+  version: 1.0.0
+  description: ""
+  minimum_rancher_version: v1.0.0-rc2
+  questions:
+    - variable: volume
+      label: Volume
+      type: string
+services:
+  registry:
+    scale: 1
+    start_on_create: true
