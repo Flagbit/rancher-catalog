@@ -1,0 +1,34 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    environment:
+      VIRTUAL_PROTO: https
+    stdin_open: true
+    network_mode: bridge
+    volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+    - /etc/proxy/certs:/etc/nginx/certs:ro
+    - /etc/nginx/vhost.d
+    - /usr/share/nginx/html
+    tty: true
+    ports:
+    - 80:80/tcp
+    - 443:443/tcp
+    labels:
+      io.rancher.sidekicks: letsencrypt-nginx-proxy-companion
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: ''
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.global: 'true'
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    stdin_open: true
+    volumes:
+    - /etc/proxy/certs:/etc/nginx/certs:rw
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    tty: true
+    volumes_from:
+    - nginx-proxy
+    labels:
+      io.rancher.container.pull_image: always
+
