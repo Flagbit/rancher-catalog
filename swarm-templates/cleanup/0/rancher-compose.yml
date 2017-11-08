@@ -1,10 +1,9 @@
-.catalog:
+version: '2'
+catalog:
   name: "Docker Cleanup"
   version: 1.0.0
   description: ""
   minimum_rancher_version: v1.0.0-rc2
-
-version: '2'
 services:
   docker-cleanup:
     start_on_create: true

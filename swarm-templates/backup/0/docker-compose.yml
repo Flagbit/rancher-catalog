@@ -1,0 +1,17 @@
+version: '2'
+services:
+  volumerize:
+    image: blacklabelops/volumerize
+    command: backup
+    stdin_open: true
+    volumes:
+      - "${BACKUP_VOLUME}:/source:ro"
+      - backup_volume:/backup
+    environment:
+      - VOLUMERIZE_SOURCE=/source
+      - VOLUMERIZE_TARGET=file:///backup
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.global: 'true'
+      io.rancher.scheduler.affinity:host_label: backup=true
