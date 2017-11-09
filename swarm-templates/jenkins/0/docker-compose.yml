@@ -26,6 +26,29 @@ services:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: master=true
 
+  jenkins-slave:
+    image: 94.130.39.250:5000/flagbit/jenkins-slave:
+    environment:
+      - JENKINS_USER=docker-slave
+      - JENKINS_PASSWORD=lingo123
+      - JENKINS_URL=http://jenkins
+    stdin_open: true
+    volumes:
+      - /etc/hostname:/usr/lib/docker/hostname
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - /run/metadata:/run/metadata
+      - /run/torcx:/run/torcx
+    tty: true
+    links:
+      - jenkins:jenkins
+    ports:
+      - 50000:50000
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_ne: jenkins=true
+      io.rancher.scheduler.global: 'true'
+
 volumes:
   jenkins_jenkins-data:
     external:

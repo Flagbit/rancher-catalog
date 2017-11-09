@@ -1,9 +1,0 @@
-version: '2'
-catalog:
-  name: "Jenkins Slave"
-  version: 1.0.0
-  description: ""
-  minimum_rancher_version: v1.0.0-rc2
-services:
-  jenkins-slave:
-    start_on_create: true
