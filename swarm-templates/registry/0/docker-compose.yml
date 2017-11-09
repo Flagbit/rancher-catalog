@@ -4,8 +4,6 @@ services:
     image: registry:2
     environment:
       - REGISTRY_HTTP_ADDR=0.0.0.0:5000
-      - REGISTRY_HTTP_TLS_CERTIFICATE="/run/secrets/registry-auth.crt"
-      - REGISTRY_HTTP_TLS_KEY="/run/secrets/registry-auth.key"
       - VIRTUAL_HOST=registry.host1.swarm.flagbit.com
     stdin_open: true
     network_mode: bridge
@@ -14,17 +12,6 @@ services:
     tty: true
     ports:
       - 5000:5000
-    secrets:
-      - mode: 444
-        uid: '0'
-        gid: '0'
-        source: registry-auth.crt
-        target: registry-auth.crt
-      - mode: 444
-        uid: '0'
-        gid: '0'
-        source: registry-auth.key
-        target: registry-auth.key
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: master=true
@@ -34,9 +21,3 @@ volumes:
   registry:
     external:
       name: "${volume}"
-
-secrets:
-  registry-auth.crt:
-    external: true
-  registry-auth.key:
-    external: true
