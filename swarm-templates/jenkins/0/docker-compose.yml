@@ -18,7 +18,10 @@ services:
     ports:
       - 8443
       - 50000:50000
-    command: --httpsPort=8443 --httpsKeyStore=/var/jenkins_home/jenkins_keystore.jks --httpsKeyStorePassword=v96#7Ptv13qb
+    command: 
+      - --httpsPort=8443 
+      - --httpsKeyStore=/var/jenkins_home/jenkins_keystore.jks 
+      - --httpsKeyStorePassword=v96#7Ptv13qb
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: master=true
@@ -28,7 +31,7 @@ services:
     environment:
       - JENKINS_USER=docker-slave
       - JENKINS_PASSWORD=lingo123
-      - JENKINS_URL=http://jenkins
+      - JENKINS_URL=${JENKINS_URL}
     stdin_open: true
     volumes:
       - /etc/hostname:/usr/lib/docker/hostname
@@ -37,8 +40,6 @@ services:
       - /run/metadata:/run/metadata
       - /run/torcx:/run/torcx
     tty: true
-    links:
-      - jenkins:jenkins
     ports:
       - 50000:50000
     labels:

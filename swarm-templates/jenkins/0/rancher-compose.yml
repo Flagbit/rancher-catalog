@@ -8,6 +8,9 @@ catalog:
     - variable: volume
       label: Volume
       type: string
+    - variable: JENKINS_URL
+      label: Jenkins Url
+      type: string
 services:
   jenkins:
     scale: 1
