@@ -33,6 +33,7 @@ services:
       - JENKINS_PASSWORD=lingo123
       - JENKINS_URL=${JENKINS_URL}
     stdin_open: true
+    user: root
     volumes:
       - /etc/hostname:/usr/lib/docker/hostname
       - /home/core/secret:/usr/lib/docker/secret
