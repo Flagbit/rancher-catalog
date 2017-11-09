@@ -15,8 +15,16 @@ services:
     ports:
       - 5000:5000
     secrets:
-      - registry-auth.crt
-      - registry-auth.key
+      - mode: 444
+        uid: '0'
+        gid: '0'
+        source: registry-auth.crt
+        target: registry-auth.crt
+      - mode: 444
+        uid: '0'
+        gid: '0'
+        source: registry-auth.key
+        target: registry-auth.key
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: master=true
