@@ -3,8 +3,8 @@ services:
   jenkins:
     image: jenkins/jenkins:lts
     environment:
-      VIRTUAL_HOST=jenkins.host1.swarm.flagbit.com
-      VIRTUAL_PORT=8080
+      - VIRTUAL_HOST=jenkins.host1.swarm.flagbit.com
+      - VIRTUAL_PORT=8080
     stdin_open: true
     network_mode: bridge
     volumes:
@@ -27,11 +27,11 @@ services:
       io.rancher.scheduler.affinity:host_label: master=true
 
   jenkins-slave:
-    image: 94.130.39.250:5000/flagbit/jenkins-slave:
+    image: 94.130.39.250:5000/flagbit/jenkins-slave
     environment:
-      JENKINS_USER=docker-slave
-      JENKINS_PASSWORD=lingo123
-      JENKINS_URL=${JENKINS_URL}
+      - JENKINS_USER=docker-slave
+      - JENKINS_PASSWORD=lingo123
+      - JENKINS_URL=${JENKINS_URL}
     stdin_open: true
     volumes:
       - /etc/hostname:/usr/lib/docker/hostname
