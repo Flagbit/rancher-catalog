@@ -17,7 +17,11 @@ services:
     tty: true
     ports:
       - 8443
-    command: --httpsPort=8443 --httpsKeyStore=/var/jenkins_home/jenkins_keystore.jks --httpsKeyStorePassword=v96#7Ptv13qb
+      - 50000:50000
+    command: 
+      - --httpsPort=8443 
+      - --httpsKeyStore=/var/jenkins_home/jenkins_keystore.jks 
+      - --httpsKeyStorePassword=v96#7Ptv13qb
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: master=true

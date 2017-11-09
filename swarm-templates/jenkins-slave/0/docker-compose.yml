@@ -1,28 +1,24 @@
 version: '2'
 services:
-  jenkins:
-    image: jenkins/jenkins:lts
+  jenkins-slave:
+    image: 94.130.39.250:5000/flagbit/jenkins-slave:
     environment:
-      - VIRTUAL_HOST=jenkins.host1.swarm.flagbit.com
-      - VIRTUAL_PORT=8080
+      - JENKINS_USER=docker-slave
+      - JENKINS_PASSWORD=lingo123
+      - JENKINS_URL=http://94.130.39.250
     stdin_open: true
-    network_mode: bridge
     volumes:
-      - jenkins_jenkins-data:/var/jenkins_home
+      - /etc/hostname:/usr/lib/docker/hostname
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
       - /run/metadata:/run/metadata
       - /run/torcx:/run/torcx
-    user: root
     tty: true
+    links:
+      - jenkins:jenkins
     ports:
-      - 8443
-    command: --httpsPort=8443 --httpsKeyStore=/var/jenkins_home/jenkins_keystore.jks --httpsKeyStorePassword=v96#7Ptv13qb
+      - 50000:50000
     labels:
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.affinity:host_label: master=true
-
-volumes:
-  jenkins_jenkins-data:
-    external:
-      name: "${volume}"
+      io.rancher.scheduler.affinity:host_label_ne: jenkins=true
+      io.rancher.scheduler.global: 'true'
