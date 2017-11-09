@@ -35,6 +35,7 @@ services:
     stdin_open: true
     volumes:
       - /etc/hostname:/usr/lib/docker/hostname
+      - /home/core/secret:/usr/lib/docker/secret
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
       - /run/metadata:/run/metadata
