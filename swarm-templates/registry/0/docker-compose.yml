@@ -4,11 +4,15 @@ services:
     image: registry:2
     environment:
       - REGISTRY_HTTP_ADDR=0.0.0.0:5000
+      - REGISTRY_HTTP_TLS_CERTIFICATE="/run/secrets/registry-auth.crt"
+      - REGISTRY_HTTP_TLS_KEY="/run/secrets/registry-auth.key"
       - VIRTUAL_HOST=registry.host1.swarm.flagbit.com
     stdin_open: true
     network_mode: bridge
     volumes:
       - registry:/var/lib/registry
+      - /home/core/registry/registry-auth.crt:/run/secrets/registry-auth.crt
+      - /home/core/registry/registry-auth.key:/run/secrets/registry-auth.key
     tty: true
     ports:
       - 5000:5000
